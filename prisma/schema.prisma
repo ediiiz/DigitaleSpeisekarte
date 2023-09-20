@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String          @id @default(uuid())
+  email         String          @unique
+  password      String
+  name          String
+  phone         String?
+  orders        Order[]
+  address       Address?
+  reviews       Review[]
+  PaymentMethod PaymentMethod[]
+}
+
+model Address {
+  id      String @id @default(uuid())
+  street  String
+  city    String
+  state   String
+  zip     String
+  country String
+  userId  String @unique
+  user    User   @relation(fields: [userId], references: [id])
+}
+
+model Menu {
+  id          String     @id @default(uuid())
+  name        String     @unique
+  description String?
+  menuType    MenuType
+  menuItems   MenuItem[]
+}
+
+model MenuItem {
+  id           String   @id @default(uuid())
+  name         String
+  description  String?
+  price        Float
+  imageUrl     String?
+  isVegan      Boolean  @default(false)
+  isGlutenFree Boolean  @default(false)
+  menuId       String
+  menu         Menu     @relation(fields: [menuId], references: [id])
+  orders       Order[]
+  reviews      Review[]
+}
+
+model Order {
+  id           String      @id @default(uuid())
+  total        Float
+  status       OrderStatus
+  createdAt    DateTime    @default(now())
+  deliveryTime DateTime?
+  userId       String
+  user         User        @relation(fields: [userId], references: [id])
+  menuItems    MenuItem[]
+}
+
+model PaymentMethod {
+  id     String      @id @default(uuid())
+  type   PaymentType
+  userId String
+  user   User        @relation(fields: [userId], references: [id])
+}
+
+model Employee {
+  id       String  @id @default(uuid())
+  name     String
+  position String
+  email    String  @unique
+  phone    String?
+}
+
+model Review {
+  id         String   @id @default(uuid())
+  rating     Float
+  comment    String?
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  menuItemId String
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+}
+
+enum OrderStatus {
+  PENDING
+  PREPARING
+  READY_FOR_PICKUP
+  COMPLETED
+  CANCELED
+}
+
+enum PaymentType {
+  CREDIT_CARD
+  DEBIT_CARD
+  PAYPAL
+  CASH
+  OTHER
+}
+
+enum MenuType {
+  BREAKFAST
+  LUNCH
+  DINNER
+  SNACKS
+  DRINKS
+}
