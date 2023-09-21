@@ -17,11 +17,11 @@
 	/>
 </svelte:head>
 
-<div class="app min-w-[375px]">
+<div class="flex flex-col min-w-[375px] min-h-[800px]">
 	<Header />
 
 	<PageTransition pathname={data.pathname}>
-		<main class="h-screen">
+		<main class="min-h-[800px]">
 			<slot />
 		</main>
 	</PageTransition>
