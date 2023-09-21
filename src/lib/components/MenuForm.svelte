@@ -1,17 +1,17 @@
 <script lang="ts">
 	import * as Form from '$lib/components/ui/form';
-	import { formSchema, type FormSchema } from '$src/routes/admin/menu/schema';
+	import { menuFormSchema } from '$src/routes/admin/menu/schema';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { MenuType } from '@prisma/client';
-	export let form: SuperValidated<FormSchema>;
+	export let form: SuperValidated<menuFormSchema>;
 </script>
 
-<Form.Root method="POST" {form} schema={formSchema} let:config>
+<Form.Root method="POST" action="?/addMenu" {form} schema={menuFormSchema} let:config>
 	<Form.Field {config} name="name">
 		<Form.Item>
 			<Form.Label>Name</Form.Label>
 			<Form.Input />
-			<Form.Description>Dieser Name wird dann auf der Webseite angezeigt</Form.Description>
+			<Form.Description>Dieser Name wird im Menu angezeigt</Form.Description>
 			<Form.Validation />
 		</Form.Item>
 	</Form.Field>
@@ -29,5 +29,6 @@
 			<Form.Validation />
 		</Form.Item>
 	</Form.Field>
-	<Form.Button>Submit</Form.Button>
+	<div class="pt-8"></div>
+	<Form.Button>Hinzufügen</Form.Button>
 </Form.Root>
