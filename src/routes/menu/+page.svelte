@@ -19,9 +19,9 @@
 		</Tabs.List>
 		{#each data.menu as menu}
 			<Tabs.Content class="" value={menu.name}>
-				<div class="flex justify-center">
+				<div class="flex flex-wrap gap-0 sm:gap-4 overflow-x-scroll justify-center">
 					{#each menu.menuItems as items}
-						<div class="w-full px-4 sm:max-w-xl lg:max-w-2xl">
+						<div class="w-full p-2 sm:px-0 sm:max-w-xl lg:max-w-2xl">
 							<MenuItem menuitem={items} />
 						</div>
 					{/each}
