@@ -12,16 +12,16 @@
 
 <div class="w-full">
 	<Tabs.Root value="account" class="w-full">
-		<Tabs.List class="grid grid-flow-col justify-start h-16 lg:justify-center overflow-x-auto">
+		<Tabs.List class="grid grid-flow-col justify-start h-16 overflow-x-auto lg:justify-center">
 			{#each data.menu as menu}
 				<Tabs.Trigger class="text-xl" value={menu.name}>{menu.name}</Tabs.Trigger>
 			{/each}
 		</Tabs.List>
 		{#each data.menu as menu}
 			<Tabs.Content class="" value={menu.name}>
-				<div class="flex flex-wrap gap-0 sm:gap-4 overflow-x-scroll justify-center">
+				<div class="flex flex-wrap gap-0 sm:gap-4 justify-center">
 					{#each menu.menuItems as items}
-						<div class="w-full p-2 sm:px-0 sm:max-w-xl lg:max-w-2xl">
+						<div class="w-full p-2 sm:p-0 sm:max-w-xl lg:max-w-2xl">
 							<MenuItem menuitem={items} />
 						</div>
 					{/each}

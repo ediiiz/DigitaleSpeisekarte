@@ -12,7 +12,7 @@
 <div class="w-full">
 	<Card.Root>
 		<Card.Header>
-			<Card.Title>{menuitem.name}</Card.Title>
+			<Card.Title class="text-2xl">{menuitem.name}</Card.Title>
 			{#if menuitem.description}
 				<Card.Description>
 					{menuitem.description}
@@ -22,7 +22,7 @@
 		<Card.Content class="space-y-2">
 			<div class="space-y-1">
 				<Label for="price" class="font-bold text-xl"
-					>{String(menuitem.price).replace('.', ',')}€</Label
+					>{String(menuitem.price.toFixed(2)).replace('.', ',')}€</Label
 				>
 			</div>
 		</Card.Content>
