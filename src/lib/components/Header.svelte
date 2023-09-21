@@ -48,7 +48,7 @@
 				<a href="/" class="block hover:text-gray-400">Home</a>
 				<a href="/menu" class="block hover:text-gray-400">Menu</a>
 				<a href="/" class="block hover:text-gray-400">About</a>
-				<a href="/" class="block hover:text-gray-400">Contact</a>
+				<a href="/admin/menu" class="block hover:text-gray-400">Contact</a>
 			</nav>
 		</div>
 	{/if}
