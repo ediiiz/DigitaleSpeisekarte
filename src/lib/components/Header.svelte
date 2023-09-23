@@ -40,7 +40,7 @@
 		</div>
 
 		<!-- Navigation Menu for Desktop -->
-		<nav class="hidden lg:flex space-x-4 text-lg">
+		<nav class="hidden lg:flex space-x-4 text-lg xl:text-xl">
 			{#each links as link}
 				<a href={link.href} class="hover:text-gray-400">{link.name}</a>
 			{/each}
