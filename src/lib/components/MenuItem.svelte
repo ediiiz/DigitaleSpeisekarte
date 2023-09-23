@@ -13,6 +13,13 @@
 	<Card.Root>
 		<Card.Header>
 			<Card.Title class="text-2xl">{menuitem.name}</Card.Title>
+			{#if menuitem.imageUrl}
+				<img
+					src={menuitem.imageUrl}
+					alt={menuitem.name}
+					class="rounded-md max-h-[100px] w-full object-cover"
+				/>
+			{/if}
 			{#if menuitem.description}
 				<Card.Description>
 					{menuitem.description}
