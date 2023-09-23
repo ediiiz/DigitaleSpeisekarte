@@ -7,12 +7,7 @@ import db from "$lib/server/prisma/prisma";
 
 
 export const load: PageServerLoad = async () => {
-
   const menu = await db.menu.findMany();
-
-  console.log(menu);
-
-
   return {
     menuForm: superValidate(menuFormSchema),
     menuList: superValidate(menuListSchema),
