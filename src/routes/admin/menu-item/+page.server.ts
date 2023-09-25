@@ -30,7 +30,7 @@ export const load: PageServerLoad = async () => {
   });
   return {
     menuItemForm: superValidate(menuItemFormSchema),
-    menuList: superValidate(menuItemListSchema),
+    menuItemList: superValidate(menuItemListSchema),
     menu,
   };
 };
