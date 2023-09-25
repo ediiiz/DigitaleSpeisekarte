@@ -4,12 +4,13 @@
 	import { menuItemFormSchema } from './schema';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import MenuItemFormAlert from './MenuItemFormAlert.svelte';
+	import MessageAlert from '$lib/components/MessageAlert.svelte';
 	export let form: SuperValidated<menuItemFormSchema>;
 	export let menu: Menu[];
 </script>
 
 <Form.Root method="POST" action="?/addMenuItem" {form} schema={menuItemFormSchema} let:config>
-	<MenuItemFormAlert />
+	<MessageAlert />
 	<Form.Field {config} name="name">
 		<Form.Item>
 			<Form.Label>Name</Form.Label>

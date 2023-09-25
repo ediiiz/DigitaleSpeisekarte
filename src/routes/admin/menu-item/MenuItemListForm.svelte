@@ -4,12 +4,13 @@
 	import { menuListSchema } from '$src/routes/admin/menu/schema';
 	import type { Menu, MenuItem } from '@prisma/client';
 	import type { SuperValidated } from 'sveltekit-superforms';
+	import MessageAlert from '$lib/components/MessageAlert.svelte';
 	export let form: SuperValidated<menuListSchema>;
 	export let menu: Menu[] & { menuItems: MenuItem[] }[];
 </script>
 
 <Form.Root method="POST" action="?/removeMenuItem" {form} schema={menuListSchema} let:config>
-	<MenuItemListAlert />
+	<MessageAlert />
 	<Form.Field {config} name="id">
 		<Form.Item>
 			<Form.Label>Produkt</Form.Label>
