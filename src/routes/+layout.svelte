@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Header from '../lib/components/Header.svelte';
 	import PageTransition from '$lib/components/PageTransition.svelte';
-	import './styles.css';
 	import '../app.css';
 	import type { LayoutServerData } from './$types';
 	import Footer from '$lib/components/Footer.svelte';
