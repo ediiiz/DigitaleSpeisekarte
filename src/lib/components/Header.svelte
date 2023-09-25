@@ -22,13 +22,13 @@
 			href: '/'
 		},
 		{
-			name: 'Admin',
-			href: '/admin/menu'
+			name: 'Einstellungen',
+			href: '/admin'
 		}
 	];
 </script>
 
-<header class="bg-gray-800 text-white">
+<header class="bg-gray-900 text-white">
 	<div class="container mx-auto px-8 py-6 flex flex-row justify-between items-center">
 		<div class="flex flex-row text-lg font-semibold">
 			<div class="relative scale-[20%] md:scale-[25%] bottom-2 md:bottom-3">
