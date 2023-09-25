@@ -11,7 +11,7 @@
 </script>
 
 <div class="w-full">
-	<Tabs.Root value="account" class="w-full">
+	<Tabs.Root value={data.menu[0].name} class="w-full">
 		<Tabs.List class="grid grid-flow-col justify-start h-16 overflow-x-auto lg:justify-center">
 			{#each data.menu as menu}
 				<Tabs.Trigger class="text-xl" value={menu.name}>{menu.name}</Tabs.Trigger>
