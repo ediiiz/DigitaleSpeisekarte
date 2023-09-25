@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import MenuForm from '$lib/components/MenuForm.svelte';
+	import MenuForm from './MenuForm.svelte';
 	import * as Card from '$lib/components/ui/card';
-	import MenuListForm from '$lib/components/MenuListForm.svelte';
+	import MenuListForm from './MenuListForm.svelte';
 
 	export let data: PageData;
 </script>

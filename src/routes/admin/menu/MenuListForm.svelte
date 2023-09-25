@@ -1,25 +1,23 @@
 <script lang="ts">
-	import MenuItemListAlert from './MenuItemListAlert.svelte';
+	import MessageAlert from '$lib/components/MessageAlert.svelte';
 	import * as Form from '$lib/components/ui/form';
 	import { menuListSchema } from '$src/routes/admin/menu/schema';
-	import type { Menu, MenuItem } from '@prisma/client';
+	import type { Menu } from '@prisma/client';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	export let form: SuperValidated<menuListSchema>;
-	export let menu: Menu[] & { menuItems: MenuItem[] }[];
+	export let menu: Menu[];
 </script>
 
-<Form.Root method="POST" action="?/removeMenuItem" {form} schema={menuListSchema} let:config>
-	<MenuItemListAlert />
+<Form.Root method="POST" action="?/removeMenu" {form} schema={menuListSchema} let:config>
+	<MessageAlert />
 	<Form.Field {config} name="id">
 		<Form.Item>
-			<Form.Label>Produkt</Form.Label>
+			<Form.Label>Menu</Form.Label>
 			<Form.Select>
-				<Form.SelectTrigger placeholder="Wähle eine Produkt zum Löschen" />
+				<Form.SelectTrigger placeholder="Wähle einen Menu zum Löschen" />
 				<Form.SelectContent>
 					{#each menu as menu}
-						{#each menu.menuItems as menuItem}
-							<Form.SelectItem value={menuItem.id}>{menuItem.name}</Form.SelectItem>
-						{/each}
+						<Form.SelectItem value={menu.id}>{menu.name}</Form.SelectItem>
 					{/each}
 				</Form.SelectContent>
 			</Form.Select>

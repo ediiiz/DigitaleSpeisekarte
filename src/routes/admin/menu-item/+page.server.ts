@@ -1,7 +1,7 @@
 import type { PageServerLoad, Actions } from "./$types";
 import { fail } from "@sveltejs/kit";
-import { superValidate } from "sveltekit-superforms/server";
-import { menuItemFormSchema, menuListSchema } from "./schema";
+import { message, setError, superValidate } from "sveltekit-superforms/server";
+import { menuItemFormSchema, menuItemListSchema } from "./schema";
 import { removeMenuItem } from "./menuItem";
 import db from "$lib/server/prisma/prisma";
 import supabase from "$lib/server/supabase";
@@ -12,7 +12,8 @@ async function handleFileUpload(file: File, name: string) {
   const { data, error } = await supabase.storage.from('produktbilder').upload(name, file);
   if (error) {
     console.error('Error uploading file:', error);
-    return "";
+
+    return null;
   }
   const { data: publicData } = supabase
     .storage
@@ -29,7 +30,7 @@ export const load: PageServerLoad = async () => {
   });
   return {
     menuItemForm: superValidate(menuItemFormSchema),
-    menuList: superValidate(menuListSchema),
+    menuList: superValidate(menuItemListSchema),
     menu,
   };
 };
@@ -39,26 +40,30 @@ export const actions: Actions = {
     const formData = await request.formData();
     const validatedForm = await superValidate(formData, menuItemFormSchema);
 
-    if (!validatedForm.valid) return fail(400, { form: validatedForm });
+    if (!validatedForm.valid) return setError(validatedForm, "Daten konnten nicht geprüft werden", { status: 400 });
 
     const file = formData.get('imageUri') as File;
     const imageUrl = file instanceof File ? await handleFileUpload(file, uuidv4()) : "";
 
-    if (!imageUrl) return fail(400, { form: validatedForm });
+    if (!imageUrl) {
+      setError(validatedForm, "Bild fehlt oder konnte nicht hochgeladen werden!")
+      return message(validatedForm, "");
+    }
 
     const menuItem = await db.menuItem.create({
-      data: { ...validatedForm.data, imageUrl }, // Here imageUrl is the Supabase URL
+      data: { ...validatedForm.data, imageUrl },
     });
 
-    return { menuItem, form: validatedForm };
+    return message(validatedForm, `${menuItem.name} hinzugefügt!`);
   },
 
   removeMenuItem: async (event) => {
-    const validatedForm = await superValidate(event, menuListSchema);
+    const validatedForm = await superValidate(event, menuItemListSchema);
 
     if (!validatedForm.valid) return fail(400, { form: validatedForm });
 
-    const menu = await removeMenuItem(validatedForm.data);
-    return { menu, form: validatedForm };
+    const menuItem = await removeMenuItem(validatedForm.data);
+
+    return message(validatedForm, `${menuItem.name} entfernt!`);
   },
 };

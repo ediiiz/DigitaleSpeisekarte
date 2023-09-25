@@ -1,6 +1,6 @@
 import type { PageServerLoad, Actions } from "./$types";
 import { fail } from "@sveltejs/kit";
-import { superValidate } from "sveltekit-superforms/server";
+import { message, superValidate } from "sveltekit-superforms/server";
 import { menuFormSchema, menuListSchema } from "./schema";
 import { addMenu, removeMenu } from "./menu";
 import db from "$lib/server/prisma/prisma";
@@ -25,10 +25,7 @@ export const actions: Actions = {
       });
     }
     const menu = await addMenu(addMenuForm.data);
-    return {
-      menu,
-      form: addMenuForm
-    };
+    return message(addMenuForm, `"${menu.name}" wurde hinzugefügt!`);
   },
   removeMenu: async (event) => {
     const removeMenuForm = await superValidate(event, menuListSchema);
@@ -38,9 +35,6 @@ export const actions: Actions = {
       });
     }
     const menu = await removeMenu(removeMenuForm.data);
-    return {
-      menu,
-      form: removeMenuForm
-    };
+    return message(removeMenuForm, `"${menu.name}" wurde gelöscht!`);
   }
 };
