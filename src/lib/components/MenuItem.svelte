@@ -21,7 +21,7 @@
 				/>
 			{/if}
 			{#if menuitem.description}
-				<Card.Description>
+				<Card.Description class="h-12">
 					{menuitem.description}
 				</Card.Description>
 			{/if}
@@ -33,8 +33,10 @@
 				>
 			</div>
 		</Card.Content>
-		<Card.Footer class="justify-center">
-			<Button class="text-xl p-6">Hinzufügen</Button>
-		</Card.Footer>
+		{#if false}
+			<Card.Footer class="justify-center">
+				<Button class="text-xl p-6">Hinzufügen</Button>
+			</Card.Footer>
+		{/if}
 	</Card.Root>
 </div>
