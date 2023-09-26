@@ -1,15 +1,22 @@
 <script lang="ts">
-	import MenuItemListAlert from './MenuItemListAlert.svelte';
 	import * as Form from '$lib/components/ui/form';
-	import { menuListSchema } from '$src/routes/admin/menu/schema';
+	import { menuItemListSchema } from './schema';
 	import type { Menu, MenuItem } from '@prisma/client';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import MessageAlert from '$lib/components/MessageAlert.svelte';
-	export let form: SuperValidated<menuListSchema>;
+	import { Loader2 } from 'lucide-svelte';
+	export let form: SuperValidated<menuItemListSchema>;
 	export let menu: Menu[] & { menuItems: MenuItem[] }[];
 </script>
 
-<Form.Root method="POST" action="?/removeMenuItem" {form} schema={menuListSchema} let:config>
+<Form.Root
+	method="POST"
+	action="?/removeMenuItem"
+	{form}
+	schema={menuItemListSchema}
+	let:config
+	let:delayed
+>
 	<MessageAlert />
 	<Form.Field {config} name="id">
 		<Form.Item>
@@ -28,5 +35,10 @@
 		</Form.Item>
 	</Form.Field>
 	<div class="pt-8"></div>
-	<Form.Button class="bg-red-700 hover:bg-red-600">Löschen</Form.Button>
+	<div class="flex flex-row gap-2 items-center">
+		<Form.Button class="bg-red-700 hover:bg-red-600">Löschen</Form.Button>
+		{#if delayed}
+			<Loader2 class="animate-spin" />
+		{/if}
+	</div>
 </Form.Root>

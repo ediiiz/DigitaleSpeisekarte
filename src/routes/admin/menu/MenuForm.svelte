@@ -4,10 +4,11 @@
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { MenuType } from '@prisma/client';
 	import MessageAlert from '$lib/components/MessageAlert.svelte';
+	import { Loader2 } from 'lucide-svelte';
 	export let form: SuperValidated<menuFormSchema>;
 </script>
 
-<Form.Root method="POST" action="?/addMenu" {form} schema={menuFormSchema} let:config>
+<Form.Root method="POST" action="?/addMenu" {form} schema={menuFormSchema} let:config let:delayed>
 	<MessageAlert />
 	<Form.Field {config} name="name">
 		<Form.Item>
@@ -32,5 +33,10 @@
 		</Form.Item>
 	</Form.Field>
 	<div class="pt-8"></div>
-	<Form.Button>Hinzufügen</Form.Button>
+	<div class="flex flex-row gap-2 items-center">
+		<Form.Button>Hinzufügen</Form.Button>
+		{#if delayed}
+			<Loader2 class="animate-spin" />
+		{/if}
+	</div>
 </Form.Root>
