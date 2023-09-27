@@ -23,7 +23,7 @@
 			<Form.Label>Produkt</Form.Label>
 			<Form.Select>
 				<Form.SelectTrigger placeholder="Wähle eine Produkt zum Löschen" />
-				<Form.SelectContent>
+				<Form.SelectContent class="max-h-[300px] overflow-y-auto">
 					{#each menu as menu}
 						{#each menu.menuItems as menuItem}
 							<Form.SelectItem value={menuItem.id}>{menuItem.name}</Form.SelectItem>
