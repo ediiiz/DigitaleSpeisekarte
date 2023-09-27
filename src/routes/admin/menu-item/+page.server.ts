@@ -46,7 +46,7 @@ export const actions: Actions = {
     const imageUrl = file instanceof File ? await handleFileUpload(file, uuidv4()) : "";
 
     if (!imageUrl) {
-      setError(validatedForm, "Bild fehlt oder konnte nicht hochgeladen werden!")
+      setError(validatedForm, "Bild fehlt oder konnte nicht hochgeladen werden! Maximale Dateigröße: 5MB, erlaubte Dateitypen: .jpg, .jpeg, .png")
       return message(validatedForm, "");
     }
 
