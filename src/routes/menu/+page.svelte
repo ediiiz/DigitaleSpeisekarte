@@ -29,4 +29,11 @@
 			</Tabs.Content>
 		{/each}
 	</Tabs.Root>
+
+	<div class="text-base py-8 text-center">
+		<Button href="/Inhaltsstoffe">Beschreibung der Inhalts und Zusatzstoffen</Button>
+	</div>
+	<div class="text-xs p-4 text-center">
+		<div>Hinweis: Die verwendeten Fotos/Abbildungen können vom Original abweichen.</div>
+	</div>
 </div>

@@ -5,6 +5,8 @@
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import MessageAlert from '$lib/components/MessageAlert.svelte';
 	import { Loader2 } from 'lucide-svelte';
+	import * as AlertDialog from '$lib/components/ui/alert-dialog';
+	import Additives from '$lib/components/Additives.svelte';
 	export let form: SuperValidated<menuItemFormSchema>;
 	export let menu: Menu[];
 </script>
@@ -55,6 +57,29 @@
 			<Form.Label>Glutenfrei?</Form.Label>
 			<Form.Switch />
 			<Form.Description>Ist das Produkt Glutenfrei?</Form.Description>
+			<Form.Validation />
+		</Form.Item>
+	</Form.Field>
+	<Form.Field {config} name="additives">
+		<Form.Item class="flex flex-col py-2">
+			<Form.Label>Zusatzstoffe</Form.Label>
+			<Form.Input />
+			<AlertDialog.Root>
+				<AlertDialog.Trigger class="border-1 bg-black text-white rounded-md p-2"
+					>Liste der Zusatzstoffe</AlertDialog.Trigger
+				>
+				<AlertDialog.Content>
+					<AlertDialog.Header>
+						<AlertDialog.Description class="max-h-[400px] overflow-y-auto">
+							<Additives />
+						</AlertDialog.Description>
+					</AlertDialog.Header>
+					<AlertDialog.Footer>
+						<AlertDialog.Cancel>Schließen</AlertDialog.Cancel>
+					</AlertDialog.Footer>
+				</AlertDialog.Content>
+			</AlertDialog.Root>
+			<Form.Description>Welche Zusatzstoffe hat das Produkt? <br /> z.B A,C,G</Form.Description>
 			<Form.Validation />
 		</Form.Item>
 	</Form.Field>

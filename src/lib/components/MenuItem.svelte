@@ -12,7 +12,14 @@
 <div class="w-full">
 	<Card.Root>
 		<Card.Header>
-			<Card.Title class="text-2xl">{menuitem.name}</Card.Title>
+			<Card.Title class="text-2xl"
+				>{menuitem.name}
+				{#if menuitem.additives}
+					<Card.Description class="h-12 text-base">
+						{menuitem.additives}
+					</Card.Description>
+				{/if}
+			</Card.Title>
 			{#if menuitem.imageUrl}
 				<img
 					src={menuitem.imageUrl}
@@ -21,7 +28,7 @@
 				/>
 			{/if}
 			{#if menuitem.description}
-				<Card.Description class="h-12">
+				<Card.Description class="h-12 text-base">
 					{menuitem.description}
 				</Card.Description>
 			{/if}
