@@ -12,12 +12,12 @@
 <div class="w-full">
 	<Card.Root>
 		<Card.Header>
-			<Card.Title class="text-2xl"
+			<Card.Title class="text-2xl flex flex-row gap-2"
 				>{menuitem.name}
 				{#if menuitem.additives}
-					<Card.Description class="h-12 text-base">
+					<div class="text-xs">
 						{menuitem.additives}
-					</Card.Description>
+					</div>
 				{/if}
 			</Card.Title>
 			{#if menuitem.imageUrl}

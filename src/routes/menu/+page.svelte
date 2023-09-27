@@ -3,6 +3,8 @@
 	import * as Card from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
+	import Additives from '$lib/components/Additives.svelte';
+	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import { Label } from '$lib/components/ui/label';
 	import type { PageData } from './$types';
 	import MenuItem from '$lib/components/MenuItem.svelte';
@@ -31,7 +33,21 @@
 	</Tabs.Root>
 
 	<div class="text-base py-8 text-center">
-		<Button href="/Inhaltsstoffe">Beschreibung der Inhalts und Zusatzstoffen</Button>
+		<AlertDialog.Root>
+			<AlertDialog.Trigger class="border-1 bg-black text-white rounded-md p-2"
+				>Liste der Inhaltsstoffe und Allergene</AlertDialog.Trigger
+			>
+			<AlertDialog.Content>
+				<AlertDialog.Header>
+					<AlertDialog.Description class="max-h-[400px] overflow-y-auto">
+						<Additives />
+					</AlertDialog.Description>
+				</AlertDialog.Header>
+				<AlertDialog.Footer>
+					<AlertDialog.Cancel>Schließen</AlertDialog.Cancel>
+				</AlertDialog.Footer>
+			</AlertDialog.Content>
+		</AlertDialog.Root>
 	</div>
 	<div class="text-xs p-4 text-center">
 		<div>Hinweis: Die verwendeten Fotos/Abbildungen können vom Original abweichen.</div>
