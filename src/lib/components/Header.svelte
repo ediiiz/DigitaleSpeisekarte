@@ -6,10 +6,6 @@
 
 	const links = [
 		{
-			name: 'Startseite',
-			href: '/'
-		},
-		{
 			name: 'Speisekarte',
 			href: '/menu'
 		},
@@ -19,7 +15,7 @@
 		},
 		{
 			name: 'Kontakt',
-			href: '/'
+			href: '#footer'
 		},
 		{
 			name: 'Einstellungen',
