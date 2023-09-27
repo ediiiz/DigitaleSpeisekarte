@@ -13,10 +13,10 @@ model User {
   password      String
   name          String
   phone         String?
-  orders        Order[]
   address       Address?
-  reviews       Review[]
+  orders        Order[]
   PaymentMethod PaymentMethod[]
+  reviews       Review[]
 }
 
 model Address {
@@ -47,9 +47,10 @@ model MenuItem {
   isVegan      Boolean  @default(false)
   isGlutenFree Boolean  @default(false)
   menuId       String
+  additives    String?
   menu         Menu     @relation(fields: [menuId], references: [id])
-  orders       Order[]
   reviews      Review[]
+  orders       Order[]  @relation("MenuItemToOrder")
 }
 
 model Order {
@@ -60,7 +61,7 @@ model Order {
   deliveryTime DateTime?
   userId       String
   user         User        @relation(fields: [userId], references: [id])
-  menuItems    MenuItem[]
+  menuItems    MenuItem[]  @relation("MenuItemToOrder")
 }
 
 model PaymentMethod {
@@ -83,9 +84,9 @@ model Review {
   rating     Float
   comment    String?
   userId     String
-  user       User     @relation(fields: [userId], references: [id])
   menuItemId String
   menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
 }
 
 enum OrderStatus {
