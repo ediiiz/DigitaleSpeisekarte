@@ -7,7 +7,8 @@ export const menuItemFormSchema = z.object({
   isVegan: z.boolean(),
   isGlutenFree: z.boolean(),
   menuId: z.string().uuid(),
-  imageUri: z.string().url(),
+  additives: z.string().max(50).optional(),
+  imageUri: z.string().url().optional(),
 });
 
 export const menuItemListSchema = z.object({
