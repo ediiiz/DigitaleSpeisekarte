@@ -2,7 +2,7 @@
 	import Info from '$lib/vars';
 </script>
 
-<footer class="bg-gray-800 text-white mt-10">
+<footer class="bg-gray-800 text-white mt-10" id="footer">
 	<div class="container mx-auto px-8 py-4">
 		<div class="flex flex-wrap gap-4 justify-center">
 			<!-- Quick Links -->
