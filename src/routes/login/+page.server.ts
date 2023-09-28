@@ -35,7 +35,7 @@ export const actions: Actions = {
         return message(loginForm, "")
       case 200:
         session ? locals.auth.setSession(session) : null;
-        return message(loginForm, eventMessage)
+        throw redirect(302, "/");
     }
   },
   register: async ({ request, locals }) => {
