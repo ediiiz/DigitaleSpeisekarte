@@ -8,15 +8,36 @@ datasource db {
 }
 
 model User {
-  id            String          @id @default(uuid())
-  email         String          @unique
-  password      String
-  name          String
+  id            String          @id @unique @default(uuid())
+  email         String?         @unique
+  username      String
   phone         String?
   address       Address?
+  type          UserType        @default(CUSTOMER)
+  auth_session  Session[]
+  key           Key[]
   orders        Order[]
   PaymentMethod PaymentMethod[]
   reviews       Review[]
+}
+
+model Session {
+  id             String @id @unique @default(uuid())
+  user_id        String
+  active_expires BigInt
+  idle_expires   BigInt
+  user           User   @relation(references: [id], fields: [user_id], onDelete: Cascade)
+
+  @@index([user_id])
+}
+
+model Key {
+  id              String  @id @unique @default(uuid())
+  hashed_password String?
+  user_id         String
+  user            User    @relation(references: [id], fields: [user_id], onDelete: Cascade)
+
+  @@index([user_id])
 }
 
 model Address {
@@ -103,6 +124,12 @@ enum PaymentType {
   PAYPAL
   CASH
   OTHER
+}
+
+enum UserType {
+  CUSTOMER
+  EMPLOYEE
+  ADMIN
 }
 
 enum MenuType {
