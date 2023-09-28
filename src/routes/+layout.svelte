@@ -5,8 +5,7 @@
 	import type { LayoutServerData } from './$types';
 	import Footer from '$lib/components/Footer.svelte';
 	export let data: LayoutServerData;
-	let session = data.session;
-	let userType = data.userStore?.type;
+	$: session = data.session;
 </script>
 
 <svelte:head>
@@ -19,7 +18,7 @@
 </svelte:head>
 
 <div class="flex flex-col min-w-[375px] min-h-[800px]">
-	<Header {userType} {session} />
+	<Header {session} />
 
 	<PageTransition pathname={data.pathname}>
 		<main class="min-h-[500px] md:min-h-[600px]">
