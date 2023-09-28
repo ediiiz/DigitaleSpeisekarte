@@ -2,7 +2,7 @@
 // for information about these interfaces
 /// <reference types="lucia" />
 
-import type { UserType } from "@prisma/client";
+type UserType = "ADMIN" | "EMPLOYEE" | "CUSTOMER";
 
 declare global {
 	namespace App {

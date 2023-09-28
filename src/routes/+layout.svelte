@@ -6,6 +6,8 @@
 	import Footer from '$lib/components/Footer.svelte';
 	export let data: LayoutServerData;
 	$: session = data.session;
+
+	$: console.log(session);
 </script>
 
 <svelte:head>
