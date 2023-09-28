@@ -10,6 +10,10 @@
 		{
 			title: 'Produkte anpassen',
 			href: '/admin/menu-item'
+		},
+		{
+			title: 'Profile',
+			href: '/profile'
 		}
 	];
 </script>
