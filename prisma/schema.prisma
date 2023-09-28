@@ -10,7 +10,7 @@ datasource db {
 model User {
   id            String          @id @unique @default(uuid())
   email         String?         @unique
-  username      String
+  username      String      
   phone         String?
   address       Address?
   type          UserType        @default(CUSTOMER)
