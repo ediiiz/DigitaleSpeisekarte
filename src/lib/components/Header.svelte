@@ -3,7 +3,10 @@
 	import { slide } from 'svelte/transition';
 	import Fire from '$lib/components/Fire.svelte';
 	import type { Session } from 'lucia';
-	export let session: Session | null;
+	type Props = {
+		session: Session | null;
+	};
+	export let session: Props['session'];
 	let showMenu = false;
 
 	const links = [

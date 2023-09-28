@@ -3,10 +3,13 @@
 	import * as Form from '$lib/components/ui/form';
 	import { menuListSchema } from '$src/routes/admin/menu/schema';
 	import type { Menu } from '@prisma/client';
+	type Props = {
+		menu: Menu[];
+	};
 	import { Loader2 } from 'lucide-svelte';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	export let form: SuperValidated<menuListSchema>;
-	export let menu: Menu[];
+	export let menu: Props['menu'];
 </script>
 
 <Form.Root

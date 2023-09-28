@@ -5,8 +5,11 @@
 	import { Label } from '$lib/components/ui/label';
 
 	import type { MenuItem } from '@prisma/client';
+	type Props = {
+		menuitem: MenuItem;
+	};
 
-	export let menuitem: MenuItem;
+	export let menuitem: Props['menuitem'];
 </script>
 
 <div class="w-full">

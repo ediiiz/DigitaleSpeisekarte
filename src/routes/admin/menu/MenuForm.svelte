@@ -3,6 +3,7 @@
 	import { menuFormSchema } from './schema';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { MenuType } from '@prisma/client';
+	const MenuTypes = Object.values(MenuType);
 	import MessageAlert from '$lib/components/MessageAlert.svelte';
 	import { Loader2 } from 'lucide-svelte';
 	export let form: SuperValidated<menuFormSchema>;
@@ -24,7 +25,7 @@
 			<Form.Select>
 				<Form.SelectTrigger placeholder="Wähle einen passenden Menutyp" />
 				<Form.SelectContent>
-					{#each Object.values(MenuType) as type}
+					{#each MenuTypes as type}
 						<Form.SelectItem value={type}>{type}</Form.SelectItem>
 					{/each}
 				</Form.SelectContent>

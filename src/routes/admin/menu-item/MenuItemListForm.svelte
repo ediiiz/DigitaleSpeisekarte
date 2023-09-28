@@ -2,11 +2,14 @@
 	import * as Form from '$lib/components/ui/form';
 	import { menuItemListSchema } from './schema';
 	import type { Menu, MenuItem } from '@prisma/client';
+	type Props = {
+		menu: Menu[] & { menuItems: MenuItem[] }[];
+	};
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import MessageAlert from '$lib/components/MessageAlert.svelte';
 	import { Loader2 } from 'lucide-svelte';
 	export let form: SuperValidated<menuItemListSchema>;
-	export let menu: Menu[] & { menuItems: MenuItem[] }[];
+	export let menu: Props['menu'];
 </script>
 
 <Form.Root

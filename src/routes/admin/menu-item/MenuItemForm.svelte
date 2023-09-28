@@ -1,6 +1,9 @@
 <script lang="ts">
 	import * as Form from '$lib/components/ui/form';
 	import type { Menu } from '@prisma/client';
+	type Props = {
+		menu: Menu[];
+	};
 	import { menuItemFormSchema } from './schema';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import MessageAlert from '$lib/components/MessageAlert.svelte';
@@ -8,7 +11,7 @@
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import Additives from '$lib/components/Additives.svelte';
 	export let form: SuperValidated<menuItemFormSchema>;
-	export let menu: Menu[];
+	export let menu: Props['menu'];
 </script>
 
 <Form.Root
