@@ -2,20 +2,14 @@
 	import Info from '$lib/vars';
 	import { slide } from 'svelte/transition';
 	import Fire from '$lib/components/Fire.svelte';
-	import type { UserType } from '@prisma/client';
 	import type { Session } from 'lucia';
 	export let session: Session | null;
-	export let userType: UserType | undefined;
 	let showMenu = false;
 
 	const links = [
 		{
 			name: 'Speisekarte',
 			href: '/menu'
-		},
-		{
-			name: 'Über uns',
-			href: '/'
 		},
 		{
 			name: 'Kontakt',
@@ -29,10 +23,6 @@
 			href: '/admin'
 		}
 	];
-
-	if (session?.state === 'active' && userType === 'ADMIN') {
-		links.push(...adminLinks);
-	}
 </script>
 
 <header class="bg-gray-900 text-white">
@@ -51,6 +41,11 @@
 			{#each links as link}
 				<a href={link.href} class="hover:text-gray-400">{link.name}</a>
 			{/each}
+			{#if session?.user.userType === 'ADMIN'}
+				{#each adminLinks as adminLinks}
+					<a href={adminLinks.href} class="hover:text-gray-400">{adminLinks.name}</a>
+				{/each}
+			{/if}
 		</nav>
 
 		<!-- Contact Info -->
@@ -89,6 +84,11 @@
 				{#each links as link}
 					<a href={link.href} class="block hover:text-gray-400">{link.name}</a>
 				{/each}
+				{#if session?.user.userType === 'ADMIN'}
+					{#each adminLinks as adminLinks}
+						<a href={adminLinks.href} class="block hover:text-gray-400">{adminLinks.name}</a>
+					{/each}
+				{/if}
 			</nav>
 		</div>
 	{/if}
