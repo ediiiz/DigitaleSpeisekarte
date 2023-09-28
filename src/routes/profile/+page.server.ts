@@ -1,13 +1,17 @@
 import { fail, redirect, type Actions } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
+import { superValidate } from "sveltekit-superforms/server";
 import { auth } from "$lib/server/lucia";
+import { logoutSchema } from "./logoutSchema";
 
 export const load: PageServerLoad = async ({ locals }) => {
   const session = await locals.auth.validate();
   if (!session) throw redirect(302, "/login");
   return {
     userId: session.user.userId,
-    username: session.user.username
+    username: session.user.username,
+    type: session.user.userType,
+    logoutFormSchema: superValidate(logoutSchema)
   };
 };
 

@@ -1,6 +1,9 @@
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
 /// <reference types="lucia" />
+
+import type { UserType } from "@prisma/client";
+
 declare global {
 	namespace App {
 		// interface Error {}
@@ -14,6 +17,7 @@ declare global {
 		type Auth = import("$lib/server/lucia").Auth;
 		type DatabaseUserAttributes = {
 			username: string;
+			type: UserType;
 		};
 		type DatabaseSessionAttributes = {};
 	}

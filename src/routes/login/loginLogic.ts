@@ -11,6 +11,7 @@ export async function createUser(username: string, password: string) {
       },
       attributes: {
         username,
+        type: "CUSTOMER",
       }
     });
 
@@ -22,6 +23,8 @@ export async function createUser(username: string, password: string) {
     return { status: 200, session, message: "User created" }
 
   } catch (error) {
+    console.log(error);
+
     if (
       error instanceof LuciaError &&
       error.message === "AUTH_DUPLICATE_KEY_ID"
