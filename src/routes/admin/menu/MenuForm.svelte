@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Form from '$lib/components/ui/form';
-	import { menuFormSchema } from '$src/routes/admin/menu/schema';
+	import { menuFormSchema } from './schema';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { MenuType } from '@prisma/client';
 	import MessageAlert from '$lib/components/MessageAlert.svelte';
