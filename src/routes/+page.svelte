@@ -13,7 +13,7 @@
 		class="absolute inset-0 before:content before:block before:absolute before:w-full before:h-[20%] before:top-0 after:content after:block after:absolute after:w-full after:h-[20%] after:bottom-0"
 		style="background: linear-gradient(to bottom, #1F2937 0%, transparent 100%);"
 	></div>
-	<div class="absolute inset-0 flex flex-col justify-center items-center">
+	<div class="lg:hidden absolute inset-0 flex flex-col justify-center items-center">
 		<Button class="text-white text-2xl md:text-3xl font-bold py-8" href="/menu"
 			>Zur Speisekarte</Button
 		>
