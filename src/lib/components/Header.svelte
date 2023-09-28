@@ -1,7 +1,11 @@
-<script>
+<script lang="ts">
 	import Info from '$lib/vars';
 	import { slide } from 'svelte/transition';
 	import Fire from '$lib/components/Fire.svelte';
+	import type { UserType } from '@prisma/client';
+	import type { Session } from 'lucia';
+	export let session: Session | null;
+	export let userType: UserType | undefined;
 	let showMenu = false;
 
 	const links = [
@@ -16,12 +20,19 @@
 		{
 			name: 'Kontakt',
 			href: '#footer'
-		},
+		}
+	];
+
+	const adminLinks = [
 		{
 			name: 'Einstellungen',
 			href: '/admin'
 		}
 	];
+
+	if (session?.state === 'active' && userType === 'ADMIN') {
+		links.push(...adminLinks);
+	}
 </script>
 
 <header class="bg-gray-900 text-white">
